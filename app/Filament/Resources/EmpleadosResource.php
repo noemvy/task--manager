@@ -30,7 +30,7 @@ class EmpleadosResource extends Resource
                 ->schema([
                     Forms\Components\Select::make('codigo_departamento')
                     ->label('Departamento')
-                    ->options(Departamentos::all()->pluck('nombre', 'codigo'))
+                    ->options(Departamentos::all()->pluck('nombre','codigo'))
                     ->searchable()
                     ->placeholder('Selecciona un departamento')
                     ->required(),
@@ -57,37 +57,7 @@ class EmpleadosResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('departamentos_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('teams_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('nombre')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('apellido')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('correo')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+
             ]);
     }
 

@@ -17,7 +17,7 @@ class ProjectsResource extends Resource
 {
     protected static ?string $model = Projects::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-wrench';
+    protected static ?string $navigationIcon = 'heroicon-o-folder-open';
     protected static ?string $modelLabel = 'Proyectos';
     protected static ?int $navigationSort = 4;
 

@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -17,15 +18,13 @@ class DepartamentosResource extends Resource
 {
     protected static ?string $model = Departamentos::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
     protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                // Forms\Components\TextInput::make('id')
-                // ->required(),
                 Forms\Components\TextInput::make('codigo')
                 ->required(),
                 Forms\Components\TextInput::make('nombre')
@@ -41,13 +40,15 @@ class DepartamentosResource extends Resource
     {
         return $table
             ->columns([
-                //
+            TextColumn::make('codigo')->label('Codigo')->sortable()->searchable(),
+            TextColumn::make('nombre')->label('Nombre')->sortable()->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
