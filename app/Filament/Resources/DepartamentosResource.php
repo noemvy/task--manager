@@ -13,6 +13,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\DepartamentosResource\RelationManagers\EmpleadoRelationManager;
 
 class DepartamentosResource extends Resource
 {
@@ -26,13 +27,17 @@ class DepartamentosResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('codigo')
-                ->required(),
+                    ->required(),
                 Forms\Components\TextInput::make('nombre')
-                ->required()
-                ->maxLength(200),
+                    ->required()
+                    ->maxLength(200),
                 Forms\Components\TextInput::make('descripcion')
-                ->required()
-                ->maxLength(300),
+                    ->required()
+                    ->maxLength(300),
+
+
+
+
             ]);
     }
 
@@ -40,8 +45,11 @@ class DepartamentosResource extends Resource
     {
         return $table
             ->columns([
-            TextColumn::make('codigo')->label('Codigo')->sortable()->searchable(),
-            TextColumn::make('nombre')->label('Nombre')->sortable()->searchable(),
+                TextColumn::make('codigo')->label('Codigo')->sortable()->searchable(),
+                TextColumn::make('nombre')->label('Nombre')->sortable()->searchable(),
+                TextColumn::make('empleados_count')
+                ->label('Empleados')
+                ->counts('empleados'),
             ])
             ->filters([
                 //
@@ -57,13 +65,6 @@ class DepartamentosResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
@@ -72,4 +73,6 @@ class DepartamentosResource extends Resource
             'edit' => Pages\EditDepartamentos::route('/{record}/edit'),
         ];
     }
+
+
 }
