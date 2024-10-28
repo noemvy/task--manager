@@ -25,6 +25,6 @@ class Empleados extends Model
      */
     public function departamento()
     {
-        return $this->belongsTo(Departamentos::class, 'departamentos_id');
+        return $this->belongsTo(Departamentos::class,'codigo_departamento','codigo');
     }
 }
