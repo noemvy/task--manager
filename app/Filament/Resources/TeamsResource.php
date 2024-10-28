@@ -17,7 +17,10 @@ class TeamsResource extends Resource
 {
     protected static ?string $model = Teams::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+    protected static ?string $navigationLabel = 'Equipos';
+    protected static ?string $modelLabel = 'Equipos';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {

@@ -17,7 +17,10 @@ class TasksResource extends Resource
 {
     protected static ?string $model = Tasks::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-pencil-square';
+    protected static ?string $navigationLabel = "Tareas";
+    protected static ?string $modelLabel = 'Tareas';
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {

@@ -18,12 +18,22 @@ class DepartamentosResource extends Resource
     protected static ?string $model = Departamentos::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                // Forms\Components\TextInput::make('id')
+                // ->required(),
+                Forms\Components\TextInput::make('codigo')
+                ->required(),
+                Forms\Components\TextInput::make('nombre')
+                ->required()
+                ->maxLength(200),
+                Forms\Components\TextInput::make('descripcion')
+                ->required()
+                ->maxLength(300),
             ]);
     }
 
