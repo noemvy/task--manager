@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\Departamentos;
 use App\Models\Team;
+use Filament\Tables\Columns\TextColumn;
 
 class EmpleadosResource extends Resource
 {
@@ -57,7 +58,17 @@ class EmpleadosResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('nombre')->label('Nombre')->sortable()->searchable(),
+                TextColumn::make('cedula')->label('Cédula')->sortable()->searchable(),
+                TextColumn::make('departamento.nombre')
+                ->label('Departamentos')
+                ->sortable()
 
+
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ]);
     }
 
