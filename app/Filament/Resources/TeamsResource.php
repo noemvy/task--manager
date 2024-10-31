@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Models\Departamentos;
+use App\Models\Empleados;
+use Filament\Forms\FormsComponent;
 
 class TeamsResource extends Resource
 {
@@ -26,16 +29,46 @@ class TeamsResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('departamentos_id')
+                Forms\Components\TextInput::make('codigo')
+                ->label('Codigo de Equipo')
+                ->required()
+                ->maxLength(50),
+
+            Forms\Components\TextInput::make('nombre')
+                ->required()
+                ->maxLength(255),
+
+            Forms\Components\Select::make('codigo_departamento')
                 ->label('Departamento')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('empleados_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('nombre')
-                    ->required()
-                    ->maxLength(255),
+                ->options(Departamentos::all()->pluck('nombre', 'codigo'))
+                ->searchable()
+                ->placeholder('Selecciona un departamento')
+                ->required()
+                ->reactive()
+                ->afterStateUpdated(function (callable $set) {
+                    // Limpia el campo 'cedula_empleado' cuando cambia el departamento
+                    $set('cedula_empleado', null);
+                }),
+
+            Forms\Components\Select::make('cedula_empleado')
+                ->label('Empleado')
+                ->options(function ($get) {
+                    $codigoDepartamento = $get('codigo_departamento');
+                    // Filtra empleados solo si un departamento está seleccionado
+                    if ($codigoDepartamento) {
+                        return Empleados::where('codigo_departamento', $codigoDepartamento)
+                        ->selectRaw("CONCAT(nombre, ' ', apellido) AS full_name, cedula")
+                        ->pluck('full_name', 'cedula');
+                    }
+                    return [];
+                })
+                ->searchable()
+                ->placeholder('Selecciona un empleado')
+                ->required(),
+                Forms\Components\TextInput::make('descripcion')
+                ->label('Descripción')
+                ->maxLength((300)),
+
             ]);
     }
 
