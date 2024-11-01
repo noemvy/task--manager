@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('codigo_departamento');// Referencia al codigo de departamento
-            $table->string('cedula_empleado');// Referencia a la cedula del empleado
             $table->string('codigo')->unique();
             $table->string('nombre');
             $table->string('descripcion');
