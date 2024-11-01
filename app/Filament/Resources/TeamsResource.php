@@ -3,18 +3,14 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TeamsResource\Pages;
-use App\Filament\Resources\TeamsResource\RelationManagers;
 use App\Models\Teams;
+use App\Models\Departamentos;
+use App\Models\Empleados;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Models\Departamentos;
-use App\Models\Empleados;
-use Filament\Forms\FormsComponent;
 
 class TeamsResource extends Resource
 {
@@ -30,44 +26,30 @@ class TeamsResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('codigo')
-                ->label('Codigo de Equipo')
-                ->required()
-                ->maxLength(50),
+                    ->label('Código de Equipo')
+                    ->required()
+                    ->maxLength(50),
 
-            Forms\Components\TextInput::make('nombre')
-                ->required()
-                ->maxLength(255),
+                Forms\Components\TextInput::make('nombre')
+                    ->label('Nombre del Equipo')
+                    ->required()
+                    ->maxLength(255),
 
-            Forms\Components\Select::make('codigo_departamento')
-                ->label('Departamento')
-                ->options(Departamentos::all()->pluck('nombre', 'codigo'))
-                ->searchable()
-                ->placeholder('Selecciona un departamento')
-                ->required()
-                ->reactive()
-                ->afterStateUpdated(function (callable $set) {
-                    // Limpia el campo 'cedula_empleado' cuando cambia el departamento
-                    $set('cedula_empleado', null);
-                }),
+                Forms\Components\Select::make('codigo_departamento')
+                    ->label('Departamento')
+                    ->options(Departamentos::all()->pluck('nombre', 'codigo'))
+                    ->searchable()
+                    ->placeholder('Selecciona un departamento')
+                    ->required(),
 
-            Forms\Components\Select::make('cedula_empleado')
-                ->label('Empleado')
-                ->options(function ($get) {
-                    $codigoDepartamento = $get('codigo_departamento');
-                    // Filtra empleados solo si un departamento está seleccionado
-                    if ($codigoDepartamento) {
-                        return Empleados::where('codigo_departamento', $codigoDepartamento)
-                        ->selectRaw("CONCAT(nombre, ' ', apellido) AS full_name, cedula")
-                        ->pluck('full_name', 'cedula');
-                    }
-                    return [];
-                })
-                ->searchable()
-                ->placeholder('Selecciona un empleado')
-                ->required(),
                 Forms\Components\TextInput::make('descripcion')
-                ->label('Descripción')
-                ->maxLength((300)),
+                    ->label('Descripción')
+                    ->maxLength(300),
+                Forms\Components\Select::make('empleados') // Campo para seleccionar empleados
+                    ->label('Empleados')
+                    ->relationship('empleados', 'nombre') // Cambia 'nombre' por el campo que deseas mostrar
+                    ->multiple() // Permite seleccionar múltiples empleados
+                    ->preload(),// Carga los empleados antes de que el usuario interactúe
 
             ]);
     }
@@ -76,22 +58,11 @@ class TeamsResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('departamentos_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('empleados_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('codigo_departamento')
+                    ->label('Código del Departamento')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
