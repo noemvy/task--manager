@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectsResource\Pages;
 use App\Filament\Resources\ProjectsResource\RelationManagers;
+use App\Filament\Resources\ProjectsResource\RelationManagers\TasksRelationManager;
 use App\Models\Projects;
 use App\Models\Teams;
 use Filament\Forms;
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
+
+
 
 class ProjectsResource extends Resource
 {
@@ -36,7 +39,7 @@ class ProjectsResource extends Resource
                     ->preload()
                     ->required(),
 
-                Forms\Components\TextInput::make('codigo_proyecto')
+                Forms\Components\TextInput::make('codigo')
                     ->label('Código de Proyecto')
                     ->required()
                     ->maxLength(20),
@@ -135,6 +138,8 @@ class ProjectsResource extends Resource
     {
         return [
             //
+            TasksRelationManager::class,
+
         ];
     }
 
