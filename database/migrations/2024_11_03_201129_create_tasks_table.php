@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('codigo_proyecto');
-            $table->string('codigo_tarea')->unique();
+            $table->string('codigo')->unique();
             $table->string('nombre');
             $table->string('descripcion');
             $table->string('status');
