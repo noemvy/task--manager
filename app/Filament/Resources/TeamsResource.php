@@ -58,11 +58,12 @@ class TeamsResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('codigo_departamento')
+                Tables\Columns\TextColumn::make('departamento.nombre')
                     ->label('Código del Departamento')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
+
             ])
             ->filters([
                 //
