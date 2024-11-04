@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TasksResource\Pages;
 use App\Filament\Resources\TasksResource\RelationManagers;
 use App\Models\Tasks;
+use App\Models\Projects;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,7 +13,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Columns\SelectColumn;
 class TasksResource extends Resource
 {
     protected static ?string $model = Tasks::class;
@@ -26,24 +29,56 @@ class TasksResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('teams_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('projects_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('nombre')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('descripcion')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('prioridad')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Select::make('codigo_proyecto')
+                ->label('Nombre del Proyecto')
+                ->options(Projects::all()->pluck('nombre','codigo'))
+                ->required()
+                ->searchable()
+                ->preload(),
+
+            Forms\Components\TextInput::make('codigo')
+                ->label('Código de Tarea')
+                ->required()
+                ->maxLength(20),
+
+            Forms\Components\TextInput::make('nombre')
+                ->label('Nombre de la Tarea')
+                ->required()
+                ->maxLength(200),
+
+            Forms\Components\TextInput::make('descripcion')
+                ->label('Indicaciones para la Tarea')
+                ->maxLength(500),
+
+
+            Forms\Components\Select::make('status')
+                ->label('Estado del proyecto')
+                ->options(['No iniciado' =>'No iniciado',
+                            'En progreso'=>'En progreso',
+                            'Finalizado'=>'Finalizado',
+                            ])
+                ->required(),
+
+            Forms\Components\Select::make('prioridad')
+                ->label('Prioridad del proyecto')
+                ->options([ 'Baja' =>'Baja',
+                            'Media'=>'Media',
+                            'Alta'=>'Alta',
+                ])
+                ->required(),
+            DatePicker::make('fecha_inicio')
+                ->label('Fecha de inicio')
+                ->required()
+                ->placeholder('Seleccione una fecha')
+                ->displayFormat('d/m/Y')
+                ->format('Y-m-d'),
+
+            DatePicker::make('fecha_finalizacion')
+                ->label('Fecha de Finalización')
+                ->required()
+                ->placeholder('Seleccione una fecha')
+                ->displayFormat('d/m/Y')
+                ->format('Y-m-d'),
             ]);
     }
 
@@ -51,28 +86,20 @@ class TasksResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('teams_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('projects_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('nombre')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('descripcion')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('prioridad')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('nombre')
+                ->label('Tarea'),
+                SelectColumn::make('status')
+                ->label('Estado')
+                ->options([
+                    'No iniciado' => '🔴 No iniciado',
+                    'En progreso' => '🟡 En progreso',
+                    'Finalizado' => '🟢 Finalizado',
+                ]),
+                TextColumn::make('fecha_inicio')
+                ->label('Inicio'),
+                TextColumn::make('fecha_finalizacion')
+                ->label('Finalización'),
             ])
             ->filters([
                 //
