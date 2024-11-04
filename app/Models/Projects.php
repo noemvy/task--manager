@@ -11,7 +11,7 @@ class Projects extends Model
     protected $table = 'projects';
     protected $fillable = [
         'codigo_team',
-        'codigo_proyecto',
+        'codigo',
         'nombre',
         'descripcion',
         'status',
@@ -25,4 +25,7 @@ class Projects extends Model
         return $this ->belongsTo(Teams::class,'codigo_team','codigo');
     }
 
+    public function tasks(){
+    return $this->hasMany(Tasks::class, 'codigo_proyecto','codigo');
+    }
 }
