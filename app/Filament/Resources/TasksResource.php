@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\SelectColumn;
+use Filament\Tables\Filters\SelectFilter;
 class TasksResource extends Resource
 {
     protected static ?string $model = Tasks::class;
@@ -34,6 +35,7 @@ class TasksResource extends Resource
                 ->options(Projects::all()->pluck('nombre','codigo'))
                 ->required()
                 ->searchable()
+                ->placeholder('Selecciona una opción')
                 ->preload(),
 
             Forms\Components\TextInput::make('codigo')
@@ -48,22 +50,26 @@ class TasksResource extends Resource
 
             Forms\Components\TextInput::make('descripcion')
                 ->label('Indicaciones para la Tarea')
-                ->maxLength(500),
+                ->maxLength(500)
+                ->required(),
 
 
             Forms\Components\Select::make('status')
-                ->label('Estado del proyecto')
-                ->options(['No iniciado' =>'No iniciado',
-                            'En progreso'=>'En progreso',
-                            'Finalizado'=>'Finalizado',
+                ->label('Estado de la Tarea')
+                ->placeholder('Selecciona una opción')
+                ->options([ 'No iniciado' => '🔴 No iniciado',
+                            'En progreso' => '🟡 En progreso',
+                            'Finalizado' => '🟢 Finalizado',
                             ])
                 ->required(),
 
             Forms\Components\Select::make('prioridad')
-                ->label('Prioridad del proyecto')
-                ->options([ 'Baja' =>'Baja',
-                            'Media'=>'Media',
-                            'Alta'=>'Alta',
+                ->label('Prioridad de la Tarea')
+                ->placeholder('Selecciona una opción')
+                ->options([
+                    'Baja' => 'Baja',
+                    'Media' => 'Media',
+                    'Alta' => 'Alta',
                 ])
                 ->required(),
             DatePicker::make('fecha_inicio')
@@ -86,7 +92,8 @@ class TasksResource extends Resource
     {
         return $table
             ->columns([
-
+                TextColumn::make('projects.nombre')
+                ->label('Proyecto'),
                 TextColumn::make('nombre')
                 ->label('Tarea'),
                 SelectColumn::make('status')
@@ -96,21 +103,42 @@ class TasksResource extends Resource
                     'En progreso' => '🟡 En progreso',
                     'Finalizado' => '🟢 Finalizado',
                 ]),
-                TextColumn::make('fecha_inicio')
-                ->label('Inicio'),
+                TextColumn::make('prioridad')
+                ->label('Prioridad')
+                ->badge()
+                ->color(fn (string $state): string => match ($state) {
+                    'Baja' => 'gray',
+                    'Media' => 'info',
+                    'Alta' => 'danger',
+                    default => 'secondary',
+                }),
                 TextColumn::make('fecha_finalizacion')
                 ->label('Finalización'),
             ])
             ->filters([
                 //
+                SelectFilter::make('status')
+                ->label('Filtrar por Estado')
+                ->options([
+                    'No iniciado' => '🔴 No iniciado',
+                    'En progreso' => '🟡 En progreso',
+                    'Finalizado' => '🟢 Finalizado',
+                ])
+                ->placeholder('Selecciona un estado'),
+
+                SelectFilter::make('projects.nombre')
+                ->label('Filtrar por Proyecto')
+                ->relationship('projects', 'nombre') // Relación con la tabla de proyectos
+                ->placeholder('Selecciona un proyecto'),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
