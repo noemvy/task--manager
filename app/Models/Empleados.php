@@ -24,6 +24,7 @@ class Empleados extends Model
         'nombre',
         'apellido',
         'correo',
+        'rol',
     ];
 
     /**
