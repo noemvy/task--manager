@@ -45,11 +45,11 @@ class TeamsResource extends Resource
                 Forms\Components\TextInput::make('descripcion')
                     ->label('Descripción')
                     ->maxLength(300),
-                Forms\Components\Select::make('empleados') // Campo para seleccionar empleados
+                Forms\Components\Select::make('empleados')
                     ->label('Empleados')
-                    ->relationship('empleados', 'nombre') // Cambia 'nombre' por el campo que deseas mostrar
-                    ->multiple() // Permite seleccionar múltiples empleados
-                    ->preload(),// Carga los empleados antes de que el usuario interactúe
+                    ->relationship('empleados', 'nombre')
+                    ->multiple()
+                    ->preload(),
 
             ]);
     }
@@ -71,6 +71,7 @@ class TeamsResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
