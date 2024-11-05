@@ -16,12 +16,14 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\Departamentos;
 use App\Models\Team;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 
 class EmpleadosResource extends Resource
 {
     protected static ?string $model = Empleados::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -47,8 +49,12 @@ class EmpleadosResource extends Resource
                 Forms\Components\TextInput::make('correo')
                     ->required()
                     ->email()
-                    ->maxLength(255)
-                    ->columnSpanFull(),
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('rol')
+                    ->required()
+                    ->maxLength(255),
+
+
                 ])->columns(2)
             ]);
     }
@@ -59,12 +65,22 @@ class EmpleadosResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nombre')->label('Nombre')->sortable()->searchable(),
+                TextColumn::make('apellido')->label('Apellido')->sortable()->searchable(),
                 TextColumn::make('cedula')->label('Cédula')->sortable()->searchable(),
                 TextColumn::make('departamento.nombre')
                 ->label('Departamentos')
-                ->sortable()
+                ->sortable(),
+                TextColumn::make('rol')
+                ->label('Rol'),
 
 
+            ])
+
+            ->filters([
+                SelectFilter::make('departamento.nombre')
+                ->label('Filtrar por Departamento')
+                ->relationship('departamento', 'nombre') // Relación con la tabla de proyectos
+                ->placeholder('Selecciona un departamento'),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
