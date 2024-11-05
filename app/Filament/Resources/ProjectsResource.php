@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
-
+use Filament\Tables\Columns\SelectColumn;
 
 
 class ProjectsResource extends Resource
@@ -33,6 +33,7 @@ class ProjectsResource extends Resource
             ->schema([
                 Forms\Components\Select::make('codigo_team')
                 ->label('Código de Equipo')
+                ->placeholder('Selecciona una opción')
                 ->options(Teams::all()->pluck('nombre','codigo'))
                     ->required()
                     ->searchable()
@@ -55,14 +56,17 @@ class ProjectsResource extends Resource
 
                 Forms\Components\Select::make('status')
                     ->label('Estado del proyecto')
-                    ->options(['No iniciado' =>'No iniciado',
-                                'En progreso'=>'En progreso',
-                                'Finalizado'=>'Finalizado',
-                                ])
+                    ->placeholder('Selecciona una opción')
+                    ->options([
+                        'No iniciado' => '🔴 No iniciado',
+                        'En progreso' => '🟡 En progreso',
+                        'Finalizado' => '🟢 Finalizado',
+                        ])
                     ->required(),
 
                 Forms\Components\Select::make('prioridad')
                     ->label('Prioridad del proyecto')
+                    ->placeholder('Selecciona una opción')
                     ->options([ 'Baja' =>'Baja',
                                 'Media'=>'Media',
                                 'Alta'=>'Alta',
@@ -108,10 +112,23 @@ class ProjectsResource extends Resource
                     ->sortable()
                     ->searchable(),
 
-                    // TextColumn::make('fecha_inicio')
-                    // ->label('Fecha Inicio')
-                    // ->sortable()
-                    // ->searchable(),
+                    SelectColumn::make('status')
+                    ->label('Estado')
+                    ->options([
+                    'No iniciado' => '🔴 No iniciado',
+                    'En progreso' => '🟡 En progreso',
+                    'Finalizado' => '🟢 Finalizado',
+                    ]),
+
+                    TextColumn::make('prioridad')
+                    ->label('Prioridad')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'Baja' => 'gray',
+                        'Media' => 'info',
+                        'Alta' => 'danger',
+                        default => 'secondary',
+                    }),
 
                     TextColumn::make('fecha_finalizacion')
                     ->label('Fecha Finalización')
@@ -122,10 +139,9 @@ class ProjectsResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()
-                ->label('vista'),
-                Tables\Actions\EditAction::make()
-                ->label('editar'),
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -142,6 +158,7 @@ class ProjectsResource extends Resource
 
         ];
     }
+
 
     public static function getPages(): array
     {
