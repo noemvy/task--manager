@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
-
             $table->string('codigo_departamento');// Referencia a la tabla departamentos
             $table->string('nombre');
             $table->string('cedula')->unique();
             $table->string('apellido');
             $table->string('correo')->unique();
+            $table->string('rol');
             $table->timestamps();
         });
     }
