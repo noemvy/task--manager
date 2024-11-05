@@ -20,7 +20,7 @@ class DepartamentosResource extends Resource
     protected static ?string $model = Departamentos::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
-    protected static ?int $navigationSort = 2;
+
 
     public static function form(Form $form): Form
     {
@@ -31,7 +31,7 @@ class DepartamentosResource extends Resource
                 Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->maxLength(200),
-                Forms\Components\TextInput::make('descripcion')
+                Forms\Components\Textarea::make('descripcion')
                     ->required()
                     ->maxLength(300),
 
