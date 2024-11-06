@@ -42,15 +42,31 @@ class TeamsResource extends Resource
                     ->placeholder('Selecciona un departamento')
                     ->required(),
 
-                Forms\Components\TextInput::make('descripcion')
+                Forms\Components\TextArea::make('descripcion')
                     ->label('Descripción')
                     ->maxLength(300),
                 Forms\Components\Select::make('empleados')
                     ->label('Empleados')
-                    ->relationship('empleados', 'nombre')
                     ->multiple()
-                    ->preload(),
+                    ->relationship('empleados', 'nombre')
+                    ->preload()
+                    ->options(function (callable $get) {
+                        $codigoDepartamento = $get('codigo_departamento');
 
+                        if ($codigoDepartamento) {
+                            return Empleados::where('codigo_departamento', $codigoDepartamento)
+                                ->get()
+                                ->pluck('cedula')
+                                ->mapWithKeys(function ($id) {
+                                    $empleado = Empleados::find($id);
+                                    $fullName = "{$empleado->nombre} {$empleado->apellido}";
+                                    return [$id => $fullName];
+                                });
+                        }
+
+                        return [];
+                    })
+                    ->reactive(),
             ]);
     }
 
@@ -59,7 +75,7 @@ class TeamsResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('departamento.nombre')
-                    ->label('Código del Departamento')
+                    ->label('Departamento')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
@@ -92,7 +108,6 @@ class TeamsResource extends Resource
         return [
             'index' => Pages\ListTeams::route('/'),
             'create' => Pages\CreateTeams::route('/create'),
-            'view' => Pages\ViewTeams::route('/{record}'),
             'edit' => Pages\EditTeams::route('/{record}/edit'),
         ];
     }
