@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\SelectColumn;
-
+use Filament\Tables\Filters\SelectFilter;
 
 class ProjectsResource extends Resource
 {
@@ -136,7 +136,19 @@ class ProjectsResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('teams.nombre')
+                ->label('Filtrar por Equipo')
+                ->relationship('teams', 'nombre')
+                ->placeholder('Selecciona un Equipo'),
+
+                SelectFilter::make('status')
+                ->label('Filtrar por Estado')
+                ->options([
+                    'No iniciado' => '🔴 No iniciado',
+                    'En progreso' => '🟡 En progreso',
+                    'Finalizado' => '🟢 Finalizado',
+                ])
+                ->placeholder('Selecciona un estado'),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
