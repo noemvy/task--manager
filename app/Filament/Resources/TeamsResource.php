@@ -11,6 +11,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Filters\SelectFilter;
 
 class TeamsResource extends Resource
 {
@@ -82,7 +83,10 @@ class TeamsResource extends Resource
 
             ])
             ->filters([
-                //
+                SelectFilter::make('departamento.nombre')
+                ->label('Filtrar por Departamento')
+                ->relationship('departamento', 'nombre')
+                ->placeholder('Selecciona un departamento'),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
