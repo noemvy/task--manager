@@ -112,14 +112,6 @@ class ProjectsResource extends Resource
                     ->sortable()
                     ->searchable(),
 
-                    SelectColumn::make('status')
-                    ->label('Estado')
-                    ->options([
-                    'No iniciado' => '🔴 No iniciado',
-                    'En progreso' => '🟡 En progreso',
-                    'Finalizado' => '🟢 Finalizado',
-                    ]),
-
                     TextColumn::make('prioridad')
                     ->label('Prioridad')
                     ->badge()
@@ -129,6 +121,14 @@ class ProjectsResource extends Resource
                         'Alta' => 'danger',
                         default => 'secondary',
                     }),
+
+                    SelectColumn::make('status')
+                    ->label('Estado')
+                    ->options([
+                    'No iniciado' => '🔴 No iniciado',
+                    'En progreso' => '🟡 En progreso',
+                    'Finalizado' => '🟢 Finalizado',
+                    ]),
 
                     TextColumn::make('fecha_finalizacion')
                     ->label('Fecha Finalización')
@@ -165,7 +165,6 @@ class ProjectsResource extends Resource
         return [
             'index' => Pages\ListProjects::route('/'),
             'create' => Pages\CreateProjects::route('/create'),
-            'view' => Pages\ViewProjects::route('/{record}'),
             'edit' => Pages\EditProjects::route('/{record}/edit'),
         ];
     }
