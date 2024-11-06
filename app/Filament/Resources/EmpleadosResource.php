@@ -79,7 +79,7 @@ class EmpleadosResource extends Resource
             ->filters([
                 SelectFilter::make('departamento.nombre')
                 ->label('Filtrar por Departamento')
-                ->relationship('departamento', 'nombre') // Relación con la tabla de proyectos
+                ->relationship('departamento', 'nombre')
                 ->placeholder('Selecciona un departamento'),
             ])
             ->actions([
