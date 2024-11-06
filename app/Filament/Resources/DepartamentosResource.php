@@ -50,6 +50,9 @@ class DepartamentosResource extends Resource
                 TextColumn::make('empleados_count')
                 ->label('Empleados')
                 ->counts('empleados'),
+                TextColumn::make('teams_count')
+                ->label('Equipos')
+                ->counts('teams'),
             ])
             ->filters([
                 //
