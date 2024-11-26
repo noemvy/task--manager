@@ -73,3 +73,16 @@ php artisan migrate
 ```
 php artisan serve
 ```
+
+# Imágenes de referencia 
+**Sección Departamentos**
+![image](https://github.com/user-attachments/assets/0b337453-39cb-42d5-8459-ed0efcf1e00b)
+
+**Sección Equipos**
+![image](https://github.com/user-attachments/assets/f07a625a-25ca-4c67-837b-5cc736a27c42)
+
+**Sección Proyectos**
+![image](https://github.com/user-attachments/assets/92058ce7-a767-40a4-a07e-8e0074865a79)
+
+**Sección Tareas**
+![image](https://github.com/user-attachments/assets/72af3c98-ce56-43cd-bda8-b0ce6ddb8406)
