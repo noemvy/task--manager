@@ -56,7 +56,7 @@
 # Instalación 🖥️
 - **Clona este repositorio:**
 ```
-git clone https://github.com/noemvy/task-manager.git
+git clone https://github.com/noemvy/task--manager.git
 cd taskManager
 ```
 - **Instala las dependencias de PHP:**
