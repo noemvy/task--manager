@@ -14,6 +14,13 @@
  - **Sección Proyectos 📂**
  - **Sección Tareas 📚**
 
+## CARACTERÍSTICAS
+- **Visualizar la cantidad de empleados que hay.**
+- **Para los proyectos y tareas se tiene un seguimiento del inicio y la finalización de la actividad**
+- **Se tiene un orden de prioridad y estado para los proyectos y tareas tales como :
+  Baja                  🔴 No iniciado
+  Media                 🟡 En progreso
+  Alta                  🟢 Finalizado 
 
 ## Tecnologías Utilizadas 🔎
 
