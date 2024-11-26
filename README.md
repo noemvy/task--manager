@@ -8,7 +8,7 @@ Este proyecto utiliza **Laravel**, **FilamentPHP** y **MySQL** para ofrecer una 
 ## Tecnologías Utilizadas
 
 -**Laravel**: Framework de PHP para el desarrollo del backend.
-<img src="https://laravel-news.com/what-is-laravel">
+<img src="https://laravel-news.com/img/laravel-logo.png" alt="Laravel Logo" width="200">
 -**Filament**: Librería para construir paneles administrativos y CRUDs rápidamente en Laravel.
 -**MySQL**: Sistema de gestión de bases de datos relacional utilizado para almacenar y gestionar los datos.
 
