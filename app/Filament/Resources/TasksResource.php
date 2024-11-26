@@ -155,7 +155,6 @@ class TasksResource extends Resource
         return [
             'index' => Pages\ListTasks::route('/'),
             'create' => Pages\CreateTasks::route('/create'),
-            'view' => Pages\ViewTasks::route('/{record}'),
             'edit' => Pages\EditTasks::route('/{record}/edit'),
         ];
     }
