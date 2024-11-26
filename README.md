@@ -5,6 +5,7 @@
 
 **_Gestor de tareas que permite gestionar empleados, equipos, con funciones avanzandas de asignar proyectos y tareas._**
 
+
 # Tecnologías Utilizadas 🔎
 
 - **Laravel**: Framework de PHP para el desarrollo del backend.
@@ -24,8 +25,6 @@
 ## Instalación 🖥️
 Clona este repositorio:
 ```
-bash
-Copiar código
 git clone https://github.com/noemvy/task-app.git
 cd taskManager
 ```
