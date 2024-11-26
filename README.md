@@ -5,6 +5,15 @@
 
 **_Gestor de tareas que permite gestionar empleados, equipos, con funciones avanzandas de asignar proyectos y tareas._**
 
+ # Contenido 
+ - **Dashboard 🖥️**
+ - **Panel de Secciones 🔎**
+ - **Sección Departamentos 🏢**
+ - **Sección Empleados 👤**
+ - **Sección Equipos 👥**
+ - **Sección Proyectos 📂**
+ - **Sección Tareas 📚**
+
 
 # Tecnologías Utilizadas 🔎
 
@@ -34,12 +43,14 @@ composer install
 ```
 - **Configura el archivo env. y Modifica las variables del entorno**
 
-- ** Ejecuta las migraciones:** 
+- **Ejecuta las migraciones:** 
 ```
-php artisan migrate **
+php artisan migrate 
 ```
 - **Inicia el servidor:**
 ```
 php artisan serve
 ```
+
+
 
