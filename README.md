@@ -8,13 +8,13 @@ Este proyecto utiliza **Laravel**, **FilamentPHP** y **MySQL** para ofrecer una 
 
 # Tecnologías Utilizadas
 
--**Laravel**: Framework de PHP para el desarrollo del backend.
--**Filament**: Librería para construir paneles administrativos y CRUDs rápidamente en Laravel.
--**MySQL**: Sistema de gestión de bases de datos relacional utilizado para almacenar y gestionar los datos.
+- **Laravel**: Framework de PHP para el desarrollo del backend.
+- **Filament**: Librería para construir paneles administrativos y CRUDs rápidamente en Laravel.
+- **MySQL**: Sistema de gestión de bases de datos relacional utilizado para almacenar y gestionar los datos.
 
 # Requisitos
 
-- Para ejecutar este proyecto, se debe de tener instalados los siguientes componentes:
+## Para ejecutar este proyecto, se debe de tener instalados los siguientes componentes:
 
 - **[PHP](https://www.php.net/)**(Versión 8.1 o superior.)
 - **[Composer](https://getcomposer.org/)**( Para gestionar las dependencias de PHP.)
