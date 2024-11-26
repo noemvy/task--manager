@@ -1,11 +1,11 @@
 
-# TASK MANAGER ⭐ 
+## TASK MANAGER ⭐ 
 
-# Descripción del Proyecto 🖊️
+## Descripción del Proyecto 🖊️
 
 **_Gestor de tareas que permite gestionar empleados, equipos, con funciones avanzandas de asignar proyectos y tareas._**
 
- # Contenido 
+ ## Contenido 
  - **Dashboard 🖥️**
  - **Panel de Secciones 🔎**
  - **Sección Departamentos 🏢**
@@ -15,7 +15,7 @@
  - **Sección Tareas 📚**
 
 
-# Tecnologías Utilizadas 🔎
+## Tecnologías Utilizadas 🔎
 
 - **Laravel**: Framework de PHP para el desarrollo del backend.
 - **Filament**: Librería para construir paneles administrativos y CRUDs rápidamente en Laravel.
@@ -23,7 +23,7 @@
 
 # Requisitos 📕
 
-# Para ejecutar este proyecto, se debe de tener instalados los siguientes componentes:
+**Para ejecutar este proyecto, se debe de tener instalados los siguientes componentes:**
 
 - **[PHP](https://www.php.net/)** : Versión 8.1 o superior.
 - **[Composer](https://getcomposer.org/)** : Para gestionar las dependencias de PHP.
