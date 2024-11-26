@@ -1,6 +1,6 @@
 
 ## TASK MANAGER ⭐ 
-(![image](https://github.com/user-attachments/assets/fb0c21ab-48de-44e0-80ea-6c94a273a1cf)
+![image](https://github.com/user-attachments/assets/fb0c21ab-48de-44e0-80ea-6c94a273a1cf)
 
 
 ## Descripción del Proyecto 🖊️
