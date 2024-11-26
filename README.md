@@ -15,8 +15,10 @@
  - **Sección Tareas 📚**
 
 ## CARACTERÍSTICAS
-- **Visualizar la cantidad de empleados que hay.**
-- **Para los proyectos y tareas se tiene un seguimiento del inicio y la finalización de la actividad**
+- **Visualización la cantidad de empleados que hay.**
+- **Departamentos con un código único 🔏**
+- **Equipos creados por Departamento 👥**
+- **Para los proyectos y tareas se tiene un seguimiento del inicio y la finalización de la actividad 🗓️**
 - **Se tiene un orden de prioridad y estado para los proyectos y tareas tales como :**
 <ul>
  <strong>Estado</strong>
@@ -28,8 +30,9 @@
 <strong>Prioridad</strong>
 <li><strong>Baja</strong></li>
 <li><strong>Media</strong></li>
-<li><strong>Media</strong></li>
+<li><strong>Alta</strong></li>
 </ul>  
+
 ## Tecnologías Utilizadas 🔎
 
 - **Laravel**: Framework de PHP para el desarrollo del backend.
