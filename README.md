@@ -34,6 +34,7 @@
 <li><strong>Media</strong></li>
 <li><strong>Alta</strong></li>
 </ul>  
+
 - **Flitros de búsqueda en cada sección**
 
 ## Tecnologías Utilizadas 🔎
