@@ -1,5 +1,7 @@
 
 ## TASK MANAGER ⭐ 
+(![image](https://github.com/user-attachments/assets/fb0c21ab-48de-44e0-80ea-6c94a273a1cf)
+
 
 ## Descripción del Proyecto 🖊️
 
@@ -15,7 +17,7 @@
  - **Sección Tareas 📚**
 
 ## CARACTERÍSTICAS
-- **Visualización la cantidad de empleados que hay.**
+- **Visualización la cantidad de empleados que hay**
 - **Departamentos con un código único 🔏**
 - **Equipos creados por Departamento 👥**
 - **Para los proyectos y tareas se tiene un seguimiento del inicio y la finalización de la actividad 🗓️**
@@ -52,7 +54,7 @@
 # Instalación 🖥️
 - **Clona este repositorio:**
 ```
-git clone https://github.com/noemvy/task-app.git
+git clone https://github.com/noemvy/task-manager.git
 cd taskManager
 ```
 - **Instala las dependencias de PHP:**
