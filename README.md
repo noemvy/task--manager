@@ -21,7 +21,7 @@
 - **Departamentos con un código único 🔏**
 - **Equipos creados por Departamento 👥**
 - **Para los proyectos y tareas se tiene un seguimiento del inicio y la finalización de la actividad 🗓️**
-- **Se tiene un orden de prioridad y estado para los proyectos y tareas tales como :**
+- **Se tiene un orden de estado y prioridad para los proyectos y tareas tales como :**
 <ul>
  <strong>Estado</strong>
   <li><span style="color: red;">🔴</span> <strong>No iniciado</strong></li>
@@ -34,6 +34,7 @@
 <li><strong>Media</strong></li>
 <li><strong>Alta</strong></li>
 </ul>  
+- **Flitros de búsqueda en cada sección**
 
 ## Tecnologías Utilizadas 🔎
 
