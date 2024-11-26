@@ -16,7 +16,7 @@
  - **Sección Proyectos 📂**
  - **Sección Tareas 📚**
 
-## CARACTERÍSTICAS
+## Características 
 - **Visualización la cantidad de empleados que hay**
 - **Departamentos con un código único 🔏**
 - **Equipos creados por Departamento 👥**
