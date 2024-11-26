@@ -17,12 +17,18 @@
 ## CARACTERÍSTICAS
 - **Visualizar la cantidad de empleados que hay.**
 - **Para los proyectos y tareas se tiene un seguimiento del inicio y la finalización de la actividad**
-- **Se tiene un orden de prioridad y estado para los proyectos y tareas tales como :
+- **Se tiene un orden de prioridad y estado para los proyectos y tareas tales como :**
+<ul>
+  <li><strong>Estado</strong></li>
+  <li><span style="color: red;">🔴</span> <strong>No iniciado</strong></li>
+  <li><span style="color: yellow;">🟡</span> <strong>En progreso</strong></li>
+  <li><span style="color: green;">🟢</span> <strong>Finalizado</strong></li>
+</ul>  
 <ul>
   <li><span style="color: red;">🔴</span> <strong>No iniciado</strong></li>
   <li><span style="color: yellow;">🟡</span> <strong>En progreso</strong></li>
   <li><span style="color: green;">🟢</span> <strong>Finalizado</strong></li>
-</ul>**
+</ul>  
 ## Tecnologías Utilizadas 🔎
 
 - **Laravel**: Framework de PHP para el desarrollo del backend.
