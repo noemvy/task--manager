@@ -7,7 +7,7 @@
 
 **_Gestor de tareas que permite gestionar empleados, equipos, con funciones avanzandas de asignar proyectos y tareas._**
 
- ## Contenido 
+ ## Contenido 📄
  - **Dashboard 🖥️**
  - **Panel de Secciones 🔎**
  - **Sección Departamentos 🏢**
@@ -16,7 +16,7 @@
  - **Sección Proyectos 📂**
  - **Sección Tareas 📚**
 
-## Características 
+## Características ✨
 - **Visualización la cantidad de empleados que hay**
 - **Departamentos con un código único 🔏**
 - **Equipos creados por Departamento 👥**
@@ -35,9 +35,9 @@
 <li><strong>Alta</strong></li>
 </ul>  
 
-- **Flitros de búsqueda en cada sección**
+- **Flitros de búsqueda en cada sección 🔎**
 
-## Tecnologías Utilizadas 🔎
+## Tecnologías Utilizadas 📒
 
 - **Laravel**: Framework de PHP para el desarrollo del backend.
 - **Filament**: Librería para construir paneles administrativos y CRUDs rápidamente en Laravel.
@@ -74,7 +74,7 @@ php artisan migrate
 php artisan serve
 ```
 
-# Imágenes de referencia 
+# Imágenes de referencia 🖼️
 **Sección Departamentos**
 ![image](https://github.com/user-attachments/assets/0b337453-39cb-42d5-8459-ed0efcf1e00b)
 
