@@ -51,7 +51,7 @@
 - **[Composer](https://getcomposer.org/)** : Para gestionar las dependencias de PHP.
 - **[Laravel Framework](https://laravel.com/docs/11.x/installation)**: Versión 10 o superior, instalado globalmente o como parte del proyecto.
 - **[Filament](https://filamentphp.com/docs/3.x/panels/installation)**: Versión 3.2 o superior.
-- **[MySQl](https://dev.mysql.com/downloads/installer/)** : Como base de datos relacional.
+- **[MySQL](https://dev.mysql.com/downloads/installer/)** : Como base de datos relacional.
 
 # Instalación 🖥️
 - **Clona este repositorio:**
